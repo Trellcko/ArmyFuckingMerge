@@ -7,6 +7,7 @@ namespace Trell.ArmyFuckingMerge.DragAndDrop
     public class Draging : MonoBehaviour, IDragHandler, IPointerDownHandler, IDropHandler
     {
         [SerializeField] private GridController gridController;
+        [SerializeField] private MergeController mergeController;
         [SerializeField] private LayerMask battleField;
 
         public Vector3 StartWorldPosition { get; private set; }
@@ -69,17 +70,35 @@ namespace Trell.ArmyFuckingMerge.DragAndDrop
 
             Army armyInCell = gridController.GetArmy(CurrentWorldPosition);
 
-            gridController.ChangeStorageState(StartWorldPosition, armyInCell);
             _dragable.transform.position = gridController.GetCenterPosition(CurrentWorldPosition);
-            gridController.ChangeStorageState(CurrentWorldPosition, _dragable.Army);
 
             if (armyInCell != null)
             {
                 armyInCell.transform.position = gridController.GetCenterPosition(StartWorldPosition);
-            }
+                
+                gridController.ChangeStorageState(StartWorldPosition, null);
+                gridController.ChangeStorageState(CurrentWorldPosition, null);
+                if (!mergeController.TryMerge(armyInCell, _dragable.Army))
+                {
+                    Swap(armyInCell, _dragable.Army);
+                }
 
+            }
+            else
+            {
+                gridController.ChangeStorageState(StartWorldPosition, null);
+                gridController.ChangeStorageState(CurrentWorldPosition, _dragable.Army);
+            }
             _dragable = null;
             _isDraging = false;
+        }
+
+        private void Swap(Army army1, Army army2)
+        {
+            gridController.ChangeStorageState(StartWorldPosition, army1);
+            army1.transform.position = gridController.GetCenterPosition(StartWorldPosition);
+            gridController.ChangeStorageState(CurrentWorldPosition, army2);
+            army2.transform.position = gridController.GetCenterPosition(CurrentWorldPosition);
         }
     }
 }

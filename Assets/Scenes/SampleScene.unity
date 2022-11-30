@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -372,6 +373,22 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,6 +940,51 @@ MonoBehaviour:
   size: {x: 4, y: 5}
   standartTile: {fileID: 11400000, guid: 43cfd8f05eb3c374d9f10c763d6a60c7, type: 2}
   selectedTile: {fileID: 11400000, guid: e77ad7b7999e66a448719a42a32f430b, type: 2}
+--- !u!1 &1562933371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1562933373}
+  - component: {fileID: 1562933372}
+  m_Layer: 0
+  m_Name: MergeController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1562933372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562933371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332c1279ab9ff594ab6407ffb9c3a6d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armySpawner: {fileID: 728231497}
+--- !u!4 &1562933373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562933371}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1994390880}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1628341273
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +1029,7 @@ GameObject:
   - component: {fileID: 1967226749}
   - component: {fileID: 1967226748}
   m_Layer: 0
-  m_Name: Image
+  m_Name: DragPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1005,6 +1067,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066bc7d28df63ab44bf0a8878b44c54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridController: {fileID: 1308674155}
+  mergeController: {fileID: 1562933372}
+  battleField:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1967226749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,6 +1140,7 @@ Transform:
   m_Children:
   - {fileID: 1308674154}
   - {fileID: 728231496}
+  - {fileID: 1562933373}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1088,7 +1156,7 @@ GameObject:
   - component: {fileID: 2040462260}
   - component: {fileID: 2040462259}
   - component: {fileID: 2040462258}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
