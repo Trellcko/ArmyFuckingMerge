@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a306becf57343a4fb5de6584e6204c6, type: 3}
+  m_Name: Cubes
+  m_EditorClassIdentifier: 
+  armies:
+  - {fileID: 4973669338158848046, guid: d25b685b45c2c3e4bbcf6d8c1cab2aa0, type: 3}
+  - {fileID: 8663078529016820671, guid: 7eb56ca945b54ec4091b661902f5207d, type: 3}
