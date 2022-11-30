@@ -17,7 +17,7 @@ namespace Trell.ArmyFuckingMerge.Core
         [SerializeField] private TileBase standartTile;
         [SerializeField] private TileBase selectedTile;
 
-        private Dictionary<Vector3Int, Army> storage = new Dictionary<Vector3Int, Army>(); 
+        private Dictionary<Vector3Int, Army> _storage = new Dictionary<Vector3Int, Army>(); 
 
         private void Awake()
         {
@@ -31,12 +31,32 @@ namespace Trell.ArmyFuckingMerge.Core
         
         public bool CheckIsFree(Vector3Int cell)
         {
-            if(storage.ContainsKey(cell))
+            if(_storage.ContainsKey(cell))
             {
-                return storage[cell] == null;
+                return _storage[cell] == null;
             }
             Debug.LogError($"{cell} doesn't contain in grid");
             return false;
+        }
+
+        public Army GetArmy(Vector3 worldPosition)
+        {
+            return GetArmy(grid.WorldToCell(worldPosition));
+        }
+
+        public Army GetArmy(Vector3Int cell)
+        {
+            if(_storage.ContainsKey(cell))
+            {
+                return _storage[cell];
+            }
+            return null;
+        }
+
+        public Vector3 GetCenterPosition(Vector3 worldPosition)
+        {
+            Vector3Int cellPosition = grid.WorldToCell(worldPosition);
+            return grid.GetCellCenterWorld(cellPosition);
         }
 
         public void ChangeStorageState(Vector3 worldPosition, Army army)
@@ -46,9 +66,9 @@ namespace Trell.ArmyFuckingMerge.Core
 
         public void ChangeStorageState(Vector3Int cell, Army army)
         {
-            if(storage.ContainsKey(cell))
+            if(_storage.ContainsKey(cell))
             {
-                storage[cell] = army;
+                _storage[cell] = army;
                 return;
             }
 
@@ -57,12 +77,10 @@ namespace Trell.ArmyFuckingMerge.Core
 
         public bool GetFreeCellPosition(ref Vector3 position)
         {
-            foreach(var cell in storage)
+            foreach(var cell in _storage)
             {
-                print($"{cell} {storage}");
                 if(cell.Value == null)
                 {
-                    print(cell.Key);
                     position = grid.GetCellCenterWorld(cell.Key);
                     return true;
                 }
@@ -77,7 +95,25 @@ namespace Trell.ArmyFuckingMerge.Core
 
         public void SelectTile(Vector3Int cell)
         {
-            tilemap.SetTile(cell, selectedTile);
+            if (_storage.ContainsKey(cell))
+            {
+                tilemap.SetTile(cell, selectedTile);
+                return;
+            }
+        }
+
+        public void UnSelectTile(Vector3 worldPosition)
+        {
+            UnSelectTile(grid.WorldToCell(worldPosition));
+        }
+
+        public void UnSelectTile(Vector3Int cell)
+        {
+            if (_storage.ContainsKey(cell))
+            {
+                tilemap.SetTile(cell, standartTile);
+                return;
+            }
         }
 
         private void InitializeGrid()
@@ -90,7 +126,7 @@ namespace Trell.ArmyFuckingMerge.Core
                 {
                     Vector3Int position = startPosition + new Vector3Int(i, j, 0);
                     tilemap.SetTile(position, standartTile);
-                    storage.Add(position, null);
+                    _storage.Add(position, null);
                 }
             }
         }

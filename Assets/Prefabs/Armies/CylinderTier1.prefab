@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4692975821972117627}
   - component: {fileID: 8744454731818767699}
+  - component: {fileID: 4755204316019703890}
+  - component: {fileID: -5068262847214742125}
   m_Layer: 0
   m_Name: CylinderTier1
   m_TagString: Untagged
@@ -46,6 +48,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Level>k__BackingField: 1
+--- !u!136 &4755204316019703890
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5075262200937065715}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.33, z: 0}
+--- !u!114 &-5068262847214742125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5075262200937065715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804929d5ac602e846b891d083f4eb1cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Army>k__BackingField: {fileID: 8744454731818767699}
 --- !u!1 &6595565101016554057
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +86,6 @@ GameObject:
   - component: {fileID: 1594412138129539838}
   - component: {fileID: 4964869610465743900}
   - component: {fileID: 1922970913531018690}
-  - component: {fileID: 8389156686127476395}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -130,17 +158,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8389156686127476395
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6595565101016554057}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
