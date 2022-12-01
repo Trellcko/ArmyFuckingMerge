@@ -10,33 +10,38 @@ namespace Trell.ArmyFuckingMerge.Core
 		[SerializeField] private Button addCubeButton;
 		[SerializeField] private Button addSphereButton;
 		[SerializeField] private Button addCylinderButton;
+		[SerializeField] private Button startFigthButton;
 
 		[Space]
 		[SerializeField] private ArmySpawner armySpawner;
 
-		private UnityAction _spawnCubeAction;
-		private UnityAction _spawnSphereAction;
-		private UnityAction _spawnCylinderAction;
+		private UnityAction _spawnCube;
+		private UnityAction _spawnSphere;
+		private UnityAction _spawnCylinder;
+		private UnityAction _startFigth;
 
         private void Awake()
         {
-			_spawnCubeAction = ()=> { armySpawner.TrySpawnCube(); };
-			_spawnSphereAction = () => { armySpawner.TrySpawnSphere(); };
-			_spawnCylinderAction = () => { armySpawner.TrySpawnCylinder(); };
+			_spawnCube = ()=> { armySpawner.TrySpawnCube(); };
+			_spawnSphere = () => { armySpawner.TrySpawnSphere(); };
+			_spawnCylinder = () => { armySpawner.TrySpawnCylinder(); };
+			_startFigth = () => { FigthStateMachine.Instnance.SetState(FigthState.StartFigth); };
 		}
 
         private void OnEnable()
         {
-			addCubeButton.onClick.AddListener(_spawnCubeAction);
-			addCylinderButton.onClick.AddListener(_spawnCylinderAction);
-			addSphereButton.onClick.AddListener(_spawnSphereAction);
-        }
+			addCubeButton.onClick.AddListener(_spawnCube);
+			addCylinderButton.onClick.AddListener(_spawnCylinder);
+			addSphereButton.onClick.AddListener(_spawnSphere);
+			startFigthButton.onClick.AddListener(_startFigth);
+		}
 
         private void OnDisable()
         {
-			addCubeButton.onClick.RemoveListener(_spawnCubeAction);
-			addCylinderButton.onClick.RemoveListener(_spawnCylinderAction);
-			addSphereButton.onClick.RemoveListener(_spawnSphereAction);
+			addCubeButton.onClick.RemoveListener(_spawnCube);
+			addCylinderButton.onClick.RemoveListener(_spawnCylinder);
+			addSphereButton.onClick.RemoveListener(_spawnSphere);
+			startFigthButton.onClick.RemoveListener(_startFigth);
 		}
     }
 }
