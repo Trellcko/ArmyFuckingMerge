@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armies:
   - {fileID: 8744454731818767699, guid: f8df4aa2c1d362c42ae5ebc888d3e9c6, type: 3}
-  - {fileID: 8302047729910390351, guid: a2f8406c790141742927ff6a6d2407ad, type: 3}
+  - {fileID: 6290002098026734678, guid: a2f8406c790141742927ff6a6d2407ad, type: 3}

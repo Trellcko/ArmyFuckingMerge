@@ -68,37 +68,36 @@ namespace Trell.ArmyFuckingMerge.DragAndDrop
         {
             gridController.UnSelectTile(CurrentWorldPosition);
 
-            Army armyInCell = gridController.GetArmy(CurrentWorldPosition);
-
-            _dragable.transform.position = gridController.GetCenterPosition(CurrentWorldPosition);
-
-            if (armyInCell != null)
+            if (gridController.CheckInGrid(CurrentWorldPosition))
             {
-                armyInCell.transform.position = gridController.GetCenterPosition(StartWorldPosition);
-                
-                gridController.ChangeStorageState(StartWorldPosition, null);
-                gridController.ChangeStorageState(CurrentWorldPosition, null);
-                if (!mergeController.TryMerge(armyInCell, _dragable.Army))
+                Army armyInCell = gridController.GetArmy(CurrentWorldPosition);
+
+                if (armyInCell != null)
                 {
-                    Swap(armyInCell, _dragable.Army);
-                }
+                    gridController.ChangeStorageState(StartWorldPosition, null);
+                    gridController.ChangeStorageState(CurrentWorldPosition, null);
 
+                    if (!mergeController.TryMerge(armyInCell, _dragable.Army))
+                    {
+                        SetArmyToPosition(armyInCell, StartWorldPosition);
+                        SetArmyToPosition(_dragable.Army, CurrentWorldPosition);
+                    }
+                    return;
+                }
+                SetArmyToPosition(null, StartWorldPosition);
+                SetArmyToPosition(_dragable.Army, CurrentWorldPosition);
+                return;
             }
-            else
-            {
-                gridController.ChangeStorageState(StartWorldPosition, null);
-                gridController.ChangeStorageState(CurrentWorldPosition, _dragable.Army);
-            }
-            _dragable = null;
-            _isDraging = false;
+            _dragableTransform.position = gridController.GetCenterPosition(StartWorldPosition);
         }
 
-        private void Swap(Army army1, Army army2)
+        private void SetArmyToPosition(Army army, Vector3 position)
         {
-            gridController.ChangeStorageState(StartWorldPosition, army1);
-            army1.transform.position = gridController.GetCenterPosition(StartWorldPosition);
-            gridController.ChangeStorageState(CurrentWorldPosition, army2);
-            army2.transform.position = gridController.GetCenterPosition(CurrentWorldPosition);
+            gridController.ChangeStorageState(position, army);
+            if (army != null)
+            {
+                army.transform.position = gridController.GetCenterPosition(position);
+            }
         }
     }
 }

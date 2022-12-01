@@ -24,6 +24,16 @@ namespace Trell.ArmyFuckingMerge.Core
             InitializeGrid();
         }
 
+        public bool CheckInGrid(Vector3 worldPosition)
+        {
+            return CheckInGrid(grid.WorldToCell(worldPosition));
+        }
+
+        public bool CheckInGrid(Vector3Int cell)
+        {
+            return _storage.ContainsKey(cell);
+        }
+
         public bool CheckIsFree(Vector3 worldPosition)
         {
             return CheckIsFree(grid.WorldToCell(worldPosition));
