@@ -6,8 +6,8 @@ namespace Trell.ArmyFuckingMerge.DragAndDrop
 {
     public class Draging : MonoBehaviour, IDragHandler, IPointerDownHandler, IDropHandler
     {
-        [SerializeField] private GridController gridController;
-        [SerializeField] private MergeController mergeController;
+        [SerializeField] private GridWrapper gridController;
+        [SerializeField] private Merger mergeController;
         [SerializeField] private Vector3 offset;
         [SerializeField] private LayerMask battleField;
 
@@ -99,12 +99,12 @@ namespace Trell.ArmyFuckingMerge.DragAndDrop
             gridController.UnSelectTile(CurrentWorldPosition);
 
             _dragable.Army.TurnOffOutLine();
-
+            
             if (gridController.CheckInGrid(CurrentWorldPosition))
             {
                 Army armyInCell = gridController.GetArmy(CurrentWorldPosition);
 
-                if (armyInCell != null)
+                if (armyInCell != null && armyInCell != _dragable.Army)
                 {
                     gridController.ChangeStorageState(StartWorldPosition, null);
                     gridController.ChangeStorageState(CurrentWorldPosition, null);

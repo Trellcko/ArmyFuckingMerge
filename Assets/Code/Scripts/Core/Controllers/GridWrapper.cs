@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Trell.ArmyFuckingMerge.Core
 {
-    public class GridController : MonoBehaviour
+    public class GridWrapper : MonoBehaviour
     {
         [SerializeField] private Grid grid;
         [SerializeField] private Tilemap tilemap;

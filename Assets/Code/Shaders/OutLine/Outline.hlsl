@@ -20,9 +20,11 @@ struct Output
 
 float _Thickness;
 float4 _Color;
+float _DepthOffset;
 
 Output Vertex(Input input)
 {
+    float depthOffset = _DepthOffset;
     Output output = (Output)0;
 #ifdef USE_PRECALCULATED_OUTLINE_NORMALS
     float3 normalOS = input.smoothNormalsOS;
@@ -31,7 +33,12 @@ Output Vertex(Input input)
 #endif
     float3 positionOS = input.positionOS.xyz + normalOS * _Thickness;
     output.positionCS = GetVertexPositionInputs(positionOS).positionCS;
-    
+
+// if depth is reversed on this platform reversed the offset
+#ifdef UNITY_REVERSED_Z
+depthOffset = -depthOffset;
+#endif
+output.positionCS.z += depthOffset;
     return output;
 }
 

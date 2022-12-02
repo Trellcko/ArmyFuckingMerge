@@ -8,7 +8,7 @@ namespace Trell.ArmyFuckingMerge.Spawner
 {
     public class ArmySpawner : MonoBehaviour
     {
-        [SerializeField] private GridController gridController;
+        [SerializeField] private GridWrapper gridController;
         [SerializeField] private Transform parent;
 
         [Space]

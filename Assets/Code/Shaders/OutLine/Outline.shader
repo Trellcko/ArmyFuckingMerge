@@ -4,6 +4,7 @@ Shader "Unlit/Outline"
     {
         _Thickness("Thickness", Float) = 1
         _Color("Color", Color) = (1, 1, 1, 1)
+        _DepthOffset("DepthOffset", Range(0, 1)) = 1
         [Toggle(USE_PRECALCULATED_OUTLINE_NORMALS)]_PrecalculatedNormals("Use UV1 normals", Float) = 0
     }
     SubShader

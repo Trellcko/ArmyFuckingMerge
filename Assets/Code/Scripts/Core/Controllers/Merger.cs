@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Trell.ArmyFuckingMerge.Core
 {
-	public class MergeController : MonoBehaviour
+	public class Merger : MonoBehaviour
 	{
 		[SerializeField] private ArmySpawner armySpawner;
 
